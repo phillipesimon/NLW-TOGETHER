@@ -3,7 +3,7 @@ import express from 'express';
 const app = express();
 
 app.get('/users', (request, response) => {
-  return response.send('Olá NLW TOGETHER');
+  return response.send('Heitor e Manu');
 });
 
 app.post('/banco', (request, response) => {
