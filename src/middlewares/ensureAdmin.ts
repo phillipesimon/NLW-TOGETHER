@@ -7,7 +7,7 @@ export function ensureAdmin(
   next: NextFunction,
 ) {
   // Verifica se o usuário é admin
-  const admin = false;
+  const admin = true;
 
   // Se admin, pode entrar no controller
   if (admin) {
