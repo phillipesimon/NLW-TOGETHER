@@ -10,7 +10,7 @@ class CreateTagService {
       throw new Error('Incorrect name!');
     }
 
-    // Verifica se a tag ja existe
+    // Verifica se a tag ja existe SELECT * FROM TAGS WHERE NAME = "name"
     const tagAlreadyExists = await tagsRepositories.findOne({ name });
 
     if (tagAlreadyExists) {
