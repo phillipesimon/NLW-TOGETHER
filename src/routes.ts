@@ -6,6 +6,7 @@ import { AuthenticateUserController } from './controllers/AuthenticateUserContro
 import { CreateComplimentController } from './controllers/CreateComplimentController';
 
 import { ensureAdmin } from './middlewares/ensureAdmin';
+import { ensureAuthenticated } from './middlewares/ensureAuthenticated';
 
 const router = Router();
 
@@ -16,9 +17,18 @@ const authenticateUserController = new AuthenticateUserController();
 const createComplimentController = new CreateComplimentController();
 
 // Definindo as rotas
+router.post(
+  '/tags',
+  ensureAuthenticated,
+  ensureAdmin,
+  createTagController.handle,
+);
 router.post('/users', ensureAdmin, createUserController.handle);
-router.post('/tags', createTagController.handle);
 router.post('/login', authenticateUserController.handle);
-router.post('/compliment', createComplimentController.handle);
+router.post(
+  '/compliments',
+  ensureAuthenticated,
+  createComplimentController.handle,
+);
 
 export { router };
