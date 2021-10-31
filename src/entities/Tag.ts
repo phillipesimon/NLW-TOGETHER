@@ -7,6 +7,8 @@ import {
 } from 'typeorm';
 import { v4 as uuid } from 'uuid';
 
+import { Expose } from 'class-transformer';
+
 @Entity('tags')
 class Tag {
   @PrimaryColumn()
@@ -21,6 +23,11 @@ class Tag {
 
   @UpdateDateColumn()
   updated_at: Date;
+
+  @Expose({ name: 'nameCuston' })
+  nameCuston(): string {
+    return `#${this.name}`;
+  }
 
   constructor() {
     if (!this.id) {
